@@ -8,10 +8,19 @@
     "react-scripts": "2.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
     "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "format-file": "prettier --write",
+    "format": "find . | grep -v node_modules | grep -v dist | egrep '\\.(js(on)?|md|scss|tsx?)?$' | xargs yarn run format-file",
+    "lint-style": "stylelint 'src/**/*.scss'",
+    "lint-ts-file": "tslint",
+    "lint-ts": "tslint --project .",
+    "lint": "lint-style && lint-ts",
+    "precommit": "lint-staged",
+    "start": "react-scripts start",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "typecheck-watch": "tsc --noEmit --watch",
+    "typecheck": "tsc --noEmit"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -21,5 +30,37 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,json,scss}": [
+      "yarn run format-file",
+      "git add"
+    ],
+    "**/*.{ts,tsx}": [
+      "yarn run lint-ts-file --fix",
+      "yarn run format-file",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.10",
+    "@types/node": "^10.12.18",
+    "@types/react": "^16.7.18",
+    "@types/react-dom": "^16.0.11",
+    "husky": "^1.2.1",
+    "lint-staged": "^8.1.0",
+    "node-sass": "^4.11.0",
+    "prettier": "^1.15.3",
+    "stylelint": "^9.9.0",
+    "stylelint-config-recommended": "^2.1.0",
+    "tslint": "^5.12.0",
+    "tslint-config-prettier": "^1.17.0",
+    "tslint-react": "^3.6.0",
+    "typescript": "^3.2.2"
+  }
 }

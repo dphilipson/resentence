@@ -1,0 +1,10 @@
+{
+  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "rules": {
+    "interface-name": [true, "never-prefix"],
+    "no-bitwise": false,
+    "no-console": [true, "log"],
+    "no-this-assignment": [true, { "allow-destructuring": true }],
+    "object-literal-sort-keys": false
+  }
+}
