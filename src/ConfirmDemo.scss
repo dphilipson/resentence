@@ -1,0 +1,15 @@
+@import "~@blueprintjs/core/lib/scss/variables";
+
+.confirm-demo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .resentence {
+    font-size: 48px;
+  }
+
+  .controls {
+    margin-top: 4 * $pt-grid-size;
+    width: 400px;
+  }
+}

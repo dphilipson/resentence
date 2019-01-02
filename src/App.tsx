@@ -1,25 +1,15 @@
+import { Classes } from "@blueprintjs/core";
 import React, { Component } from "react";
 import "./App.scss";
+import ConfirmDemo from "./ConfirmDemo";
 import { getEdits } from "./editDistance";
 import { makeState, transformTo } from "./state";
 
 class App extends Component {
   public render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className={Classes.DARK}>
+        <ConfirmDemo />
       </div>
     );
   }

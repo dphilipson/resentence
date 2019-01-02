@@ -7,6 +7,6 @@ interface Props {
 
 export default class Resentence extends PureComponent<Props> {
   public render(): JSX.Element {
-    throw new Error("Not yet implemented");
+    return <p className={this.props.className}>{this.props.text}</p>;
   }
 }
