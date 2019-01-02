@@ -20,13 +20,16 @@ export function transformTo(state: State, s: string): State {
   return applyEdits(state, edits);
 }
 
-function getText(state: State): string {
+export function getText(state: State): string {
   return state.tokens.map(t => t.token).join("");
 }
 
 function applyEdits(state: State, edits: Edit[]): State {
   // This runs in quadratic time, but since computing the edits takes
   // quadratic time anyways it's not important to optimize.
+  if (edits.length === 0) {
+    return state;
+  }
   const tokens = state.tokens.slice();
   let { nextKey } = state;
   edits.forEach(edit => {
@@ -38,8 +41,7 @@ function applyEdits(state: State, edits: Edit[]): State {
       }
       case EditType.REPLACE: {
         const { position, token } = edit;
-        const oldKeyedToken = tokens[position];
-        tokens.splice(position, 1, { ...oldKeyedToken, token });
+        tokens.splice(position, 1, { token, key: nextKey++ });
         break;
       }
       case EditType.DELETE: {
