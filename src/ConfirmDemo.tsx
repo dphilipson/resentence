@@ -31,10 +31,11 @@ export default class ConfirmDemo extends PureComponent<Props, State> {
             value={inputText}
             placeholder="Enter text and press Update…"
             onChange={this.handleInputChange}
+            onSubmit={this.handleUpdate}
           />
           <Button
             className={Classes.FIXED}
-            disabled={inputText.trim().length === 0}
+            disabled={!inputText.trim()}
             text="Update"
             intent={Intent.PRIMARY}
             onClick={this.handleUpdate}
@@ -47,9 +48,10 @@ export default class ConfirmDemo extends PureComponent<Props, State> {
   private handleInputChange = (inputText: string): void =>
     this.setState({ inputText });
 
-  private handleUpdate = (): void =>
+  private handleUpdate = (): void => {
     this.setState(prevState => {
       const text = prevState.inputText.trim();
-      return { text, inputText: text };
+      return text ? { text, inputText: text } : null;
     });
+  };
 }

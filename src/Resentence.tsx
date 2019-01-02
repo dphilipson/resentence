@@ -1,5 +1,5 @@
 import React, { CSSProperties, PureComponent } from "react";
-import { Transition } from "react-spring";
+import { Spring, Transition } from "react-spring";
 import { getText, KeyedToken, makeState, State, transformTo } from "./state";
 
 interface Props {
@@ -35,12 +35,22 @@ export default class Resentence extends PureComponent<Props, State> {
           enter={{ opacity: 1, transform: "scale(1)" }}
           leave={{ opacity: 0, transform: "scale(0)" }}
         >
-          {({ key, token }, state, i) => props => {
+          {({ key, token }, state, i) => transitionProps => {
             const index = state === "leave" ? i : this.indexOfKey(key);
             return (
-              <div style={{ ...CHILD_STYLE, ...props, marginLeft: index * 40 }}>
-                {token}
-              </div>
+              <Spring to={{ marginLeft: index * 40 }}>
+                {springProps => (
+                  <div
+                    style={{
+                      ...CHILD_STYLE,
+                      ...transitionProps,
+                      ...springProps,
+                    }}
+                  >
+                    {token}
+                  </div>
+                )}
+              </Spring>
             );
           }}
         </Transition>
