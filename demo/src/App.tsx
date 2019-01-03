@@ -27,7 +27,7 @@ class App extends Component {
         </p>
         <BitcoinDemo className="app-bitcoin-demo" />
         <p className="app-bitcoin-explanation">
-          Monthly Bitcoin prices, July 2017—December 2018
+          Monthly Bitcoin prices, Nov 2017 — Jul 2018
         </p>
         <h3 className="app-section-header">Display updates intuitively</h3>
         <p className="app-section-body">
@@ -43,9 +43,9 @@ class App extends Component {
           experiment with different edit types using the interactive demo below.
         </p>
         <ConfirmDemo className="app-confirm-demo" initialText="Edit me…" />
-        <h3 className="app-section-header">How to use</h3>
+        <h3 className="app-section-header">Simple to use</h3>
         <p className="app-section-body">
-          Using Resentence is as simple as wrapping your text in a{" "}
+          Using Resentence is as easy as wrapping your text in a{" "}
           <code>&lt;Resentence&gt;</code> component, with no additional
           integration required.{" "}
           <a href="https://github.com/dphilipson/resentence">
