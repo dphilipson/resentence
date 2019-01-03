@@ -1,12 +1,21 @@
 import { FocusStyleManager } from "@blueprintjs/core";
 import React from "react";
 import ReactDOM from "react-dom";
+import WebFont from "webfontloader";
 import App from "./App";
 import "./index.scss";
 import * as serviceWorker from "./serviceWorker";
 
 FocusStyleManager.onlyShowFocusOnTabs();
-ReactDOM.render(<App />, document.getElementById("root"));
+WebFont.load({
+  google: { families: ["Noto Sans", "Open Sans"] },
+  active: onFontLoadDone,
+  inactive: onFontLoadDone,
+});
+
+function onFontLoadDone(): void {
+  ReactDOM.render(<App />, document.getElementById("root"));
+}
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
