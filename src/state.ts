@@ -1,6 +1,6 @@
 import { Edit, EditType, getEdits } from "./editDistance";
 
-export interface State {
+export interface TokenState {
   tokens: KeyedToken[];
   nextKey: number;
 }
@@ -10,21 +10,21 @@ export interface KeyedToken {
   token: string;
 }
 
-export function makeState(s: string): State {
+export function makeTokenState(s: string): TokenState {
   const tokens = s.split("").map((c, i) => ({ key: i, token: c }));
   return { tokens, nextKey: s.length };
 }
 
-export function transformTo(state: State, s: string): State {
+export function transformTo(state: TokenState, s: string): TokenState {
   const edits = getEdits(getText(state), s);
   return applyEdits(state, edits);
 }
 
-export function getText(state: State): string {
+export function getText(state: TokenState): string {
   return state.tokens.map(t => t.token).join("");
 }
 
-function applyEdits(state: State, edits: Edit[]): State {
+function applyEdits(state: TokenState, edits: Edit[]): TokenState {
   // This runs in quadratic time, but since computing the edits takes
   // quadratic time anyways it's not important to optimize.
   if (edits.length === 0) {

@@ -14,10 +14,13 @@ interface State {
   inputText: string;
 }
 
-const INITIAL_TEXT = "Hello, World!";
+const INITIAL_TEXT = "Try me…";
 
 export default class ConfirmDemo extends PureComponent<Props, State> {
-  public readonly state: State = { text: INITIAL_TEXT, inputText: "" };
+  public readonly state: State = {
+    text: INITIAL_TEXT,
+    inputText: INITIAL_TEXT,
+  };
 
   public render(): JSX.Element {
     const { className } = this.props;
