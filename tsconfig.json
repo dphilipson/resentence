@@ -1,20 +1,19 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "noEmit": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "inlineSources": true,
+    "module": "commonjs",
     "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "resolveJsonModule": true,
+    "outDir": "dist",
+    "jsx": "react",
     "skipLibCheck": true,
+    "sourceMap": true,
     "strict": true,
-    "target": "es6",
-    "allowJs": true,
-    "esModuleInterop": true
+    "target": "es5"
   },
-  "include": ["src"]
+  "include": ["src/**/*"]
 }

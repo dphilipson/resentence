@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import React, { PureComponent } from "react";
-import Resentence from "./Resentence";
+import Resentence from "./lib/index";
 
 interface Props {
   className?: string;

@@ -1,0 +1,40 @@
+{
+  "name": "resentence",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://dphilipson.github.io/resentence",
+  "dependencies": {
+    "@blueprintjs/core": "^3.10.0",
+    "classnames": "^2.2.6",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-scripts": "2.1.1",
+    "react-spring": "^7.2.7"
+  },
+  "scripts": {
+    "build": "yarn run copy-lib && react-scripts build",
+    "copy-lib": "rm -rf src/lib && cp -r ../src src/lib",
+    "eject": "react-scripts eject",
+    "start": "yarn run copy-lib && react-scripts start",
+    "test": "yarn run copy-lib && react-scripts test"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "@types/classnames": "^2.2.6",
+    "@types/jest": "^23.3.10",
+    "@types/node": "^10.12.18",
+    "@types/react": "^16.7.18",
+    "@types/react-dom": "^16.0.11",
+    "gh-pages": "^2.0.1",
+    "node-sass": "^4.11.0",
+    "typescript": "^3.2.2"
+  }
+}
