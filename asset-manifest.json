@@ -1,16 +1,16 @@
 {
   "main.css": "/resentence/static/css/main.ac4db150.chunk.css",
-  "main.js": "/resentence/static/js/main.09cd8a46.chunk.js",
-  "main.js.map": "/resentence/static/js/main.09cd8a46.chunk.js.map",
+  "main.js": "/resentence/static/js/main.e918df0d.chunk.js",
+  "main.js.map": "/resentence/static/js/main.e918df0d.chunk.js.map",
   "static/css/1.c8421da6.chunk.css": "/resentence/static/css/1.c8421da6.chunk.css",
   "static/js/1.2bb6641b.chunk.js": "/resentence/static/js/1.2bb6641b.chunk.js",
   "static/js/1.2bb6641b.chunk.js.map": "/resentence/static/js/1.2bb6641b.chunk.js.map",
   "runtime~main.js": "/resentence/static/js/runtime~main.b7fc1e62.js",
   "runtime~main.js.map": "/resentence/static/js/runtime~main.b7fc1e62.js.map",
   "static/media/index.scss": "/resentence/static/media/icons-20.0ec8ac2b.ttf",
-  "static/css/main.ac4db150.chunk.css.map": "/resentence/static/css/main.ac4db150.chunk.css.map",
   "static/css/1.c8421da6.chunk.css.map": "/resentence/static/css/1.c8421da6.chunk.css.map",
+  "static/css/main.ac4db150.chunk.css.map": "/resentence/static/css/main.ac4db150.chunk.css.map",
   "index.html": "/resentence/index.html",
-  "precache-manifest.7e07925b99bf63087029f7d8ccaafc71.js": "/resentence/precache-manifest.7e07925b99bf63087029f7d8ccaafc71.js",
+  "precache-manifest.4876ffe97246024720779efecabbb36c.js": "/resentence/precache-manifest.4876ffe97246024720779efecabbb36c.js",
   "service-worker.js": "/resentence/service-worker.js"
 }
