@@ -32,10 +32,18 @@ export default class Resentence extends PureComponent<Props, State> {
 
   public componentDidMount(): void {
     this.syncTokens();
+    document.addEventListener("visibilitychange", this.handleVisibilityChange);
   }
 
   public componentDidUpdate(): void {
     this.syncTokens();
+  }
+
+  public componentWillUnmount(): void {
+    document.removeEventListener(
+      "visibilitychange",
+      this.handleVisibilityChange,
+    );
   }
 
   public render(): JSX.Element {
@@ -93,7 +101,7 @@ export default class Resentence extends PureComponent<Props, State> {
   private syncTokens(): void {
     const { children } = this.props;
     const { tokenState, renderedText } = this.state;
-    if (children !== renderedText) {
+    if (!document.hidden && children !== renderedText) {
       const tokenPositions = this.getTokenPositions();
       if (tokenPositions) {
         this.setState({
@@ -137,6 +145,10 @@ export default class Resentence extends PureComponent<Props, State> {
       y: tokenRect.top - parentRect.top,
     };
   }
+
+  private handleVisibilityChange = (): void => {
+    this.syncTokens();
+  };
 }
 
 function getKey(token: KeyedToken): number {
