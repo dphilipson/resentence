@@ -1,12 +1,6 @@
 import React, { createRef, CSSProperties, PureComponent } from "react";
 import { Spring, Transition } from "react-spring";
-import {
-  getText,
-  KeyedToken,
-  makeTokenState,
-  TokenState,
-  transformTo,
-} from "./state";
+import { KeyedToken, makeTokenState, TokenState, transformTo } from "./state";
 
 interface Props {
   className?: string;

@@ -7,6 +7,7 @@ import TextInput from "./TextInput";
 
 interface Props {
   className?: string;
+  initialText: string;
 }
 
 interface State {
@@ -14,20 +15,19 @@ interface State {
   inputText: string;
 }
 
-const INITIAL_TEXT = "Try me…";
-
 export default class ConfirmDemo extends PureComponent<Props, State> {
-  public readonly state: State = {
-    text: INITIAL_TEXT,
-    inputText: INITIAL_TEXT,
-  };
+  constructor(props: Props) {
+    super(props);
+    const { initialText } = props;
+    this.state = { text: initialText, inputText: initialText };
+  }
 
   public render(): JSX.Element {
     const { className } = this.props;
     const { text, inputText } = this.state;
     return (
       <div className={classNames("confirm-demo", className)}>
-        <Resentence className="resentence" text={text} />
+        <Resentence className="demo-readout" text={text} />
         <ControlGroup className="controls" fill={true}>
           <TextInput
             className="input"
