@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "6b08e216b2b98b2450e1",
+    "revision": "ddce5cb63a1421131b9b",
     "url": "/resentence/static/css/main.ac4db150.chunk.css"
   },
   {
-    "revision": "6b08e216b2b98b2450e1",
-    "url": "/resentence/static/js/main.6b08e216.chunk.js"
+    "revision": "ddce5cb63a1421131b9b",
+    "url": "/resentence/static/js/main.ddce5cb6.chunk.js"
   },
   {
     "revision": "2bb6641b5bd1e20f90b0",
@@ -28,12 +28,12 @@ self.__precacheManifest = [
     "url": "/resentence/static/media/icons-16.d0bcd5b9.woff"
   },
   {
-    "revision": "f4d910a0626d8e60f310a7199dc6b191",
-    "url": "/resentence/static/media/icons-20.f4d910a0.eot"
-  },
-  {
     "revision": "26e98f292f486f2bfac2abf9472e490a",
     "url": "/resentence/static/media/icons-16.26e98f29.ttf"
+  },
+  {
+    "revision": "f4d910a0626d8e60f310a7199dc6b191",
+    "url": "/resentence/static/media/icons-20.f4d910a0.eot"
   },
   {
     "revision": "9d0578e5315c18aa528db1f1bfcb56f5",
@@ -44,7 +44,7 @@ self.__precacheManifest = [
     "url": "/resentence/static/media/icons-20.0ec8ac2b.ttf"
   },
   {
-    "revision": "fd46931e9e6e64cb884579100058c1e4",
+    "revision": "50f0c300e532767e96e6407fd34df1e8",
     "url": "/resentence/index.html"
   }
 ];
