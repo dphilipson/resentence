@@ -137,9 +137,10 @@ function getKey(token: KeyedToken): number {
 }
 
 const PARENT_STYLE: CSSProperties = { position: "relative" };
-const GHOST_STYLE: CSSProperties = { visibility: "hidden" };
+const GHOST_STYLE: CSSProperties = { color: "transparent" };
 const CHILD_STYLE: CSSProperties = {
   position: "absolute",
   left: "50%",
   top: 0,
+  pointerEvents: "none",
 };
