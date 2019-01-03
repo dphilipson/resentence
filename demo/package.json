@@ -14,7 +14,9 @@
   "scripts": {
     "build": "yarn run copy-lib && react-scripts build",
     "copy-lib": "rm -rf src/lib && cp -r ../src src/lib",
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject",
+    "predeploy": "yarn build",
     "start": "yarn run copy-lib && react-scripts start",
     "test": "yarn run copy-lib && react-scripts test"
   },
