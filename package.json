@@ -32,7 +32,7 @@
     "lint-file": "tslint",
     "lint": "tslint --project .",
     "prepublishOnly": "yarn run test && yarn run build",
-    "test": "yarn run lint && tsc --noEmit && yarn run jest"
+    "test": "yarn run lint && tsc --noEmit"
   },
   "husky": {
     "hooks": {

@@ -12,7 +12,8 @@ class App extends Component {
       <div className={classNames(Classes.DARK, "app")}>
         <h1 className="app-title">Resentence</h1>
         <p className="app-explanation">
-          Easy-to-use React component for morphing one string into another.
+          Easy-to-use React component for morphing one string into another.{" "}
+          <a href="https://github.com/dphilipson/resentence">GitHub</a>
         </p>
         <SeussDemo className="app-seuss-demo" />
         <h3 className="app-section-header">
@@ -42,6 +43,16 @@ class App extends Component {
           experiment with different edit types using the interactive demo below.
         </p>
         <ConfirmDemo className="app-confirm-demo" initialText="Edit me…" />
+        <h3 className="app-section-header">How to use</h3>
+        <p className="app-section-body">
+          Using Resentence is as simple as wrapping your text in a{" "}
+          <code>&lt;Resentence&gt;</code> component, with no additional
+          integration required.{" "}
+          <a href="https://github.com/dphilipson/resentence">
+            See the GitHub repo
+          </a>{" "}
+          for details.
+        </p>
         <p className="app-section-body app-copyright">
           Copyright © 2019 David Philipson
         </p>
