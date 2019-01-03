@@ -1,32 +1,56 @@
-.App {
+@import "~@blueprintjs/core/lib/scss/variables";
+
+.app {
   text-align: center;
-}
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  .app-title {
+    font-size: 72px;
+    color: $cobalt5;
+    margin-bottom: 20px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .app-explanation {
+    font-size: 16px;
+    color: $pt-dark-text-color-muted;
+  }
+
+  .app-seuss-demo {
+    margin-top: 250px;
+    margin-bottom: 350px;
+  }
+
+  .app-section-header,
+  .app-section-body {
+    text-align: left;
+    width: 800px;
+    margin: auto;
+  }
+
+  .app-section-header {
+    font-size: 24px;
+  }
+
+  .app-section-body {
+    margin-top: $pt-grid-size;
+    color: $pt-dark-text-color-muted;
+  }
+
+  .app-bitcoin-demo {
+    margin-top: 8 * $pt-grid-size;
+  }
+
+  .app-bitcoin-explanation {
+    margin-top: 1 * $pt-grid-size;
+    color: $gray3;
+    margin-bottom: 100px;
+  }
+
+  .app-confirm-demo {
+    margin-top: 8 * $pt-grid-size;
+    margin-bottom: 100px;
+  }
+
+  .app-copyright {
+    margin-bottom: 2 * $pt-grid-size;
   }
 }

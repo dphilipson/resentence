@@ -37,10 +37,9 @@ export default class RotatingDemo extends PureComponent<Props, State> {
       return null;
     }
     return (
-      <Resentence
-        className={classNames("demo-readout", className)}
-        text={entries[index % entries.length]}
-      />
+      <Resentence className={classNames("demo-readout", className)}>
+        {entries[index % entries.length]}
+      </Resentence>
     );
   }
 

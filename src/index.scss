@@ -4,9 +4,20 @@
 @import "~@blueprintjs/core/lib/scss/variables";
 
 body {
-  background-color: $dark-gray3;
+  background-color: $pt-dark-app-background-color;
+  color: $pt-dark-text-color;
+  font-family: "Open Sans", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Noto Sans", sans-serif;
 }
 
 .demo-readout {
-  font-size: 48px;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 64px;
 }

@@ -4,7 +4,7 @@ import { KeyedToken, makeTokenState, TokenState, transformTo } from "./state";
 
 interface Props {
   className?: string;
-  text: string;
+  children: string;
 }
 
 interface State {
@@ -24,7 +24,7 @@ export default class Resentence extends PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      tokenState: makeTokenState(props.text),
+      tokenState: makeTokenState(props.children),
       renderedText: undefined,
       tokenPositions: [],
     };
@@ -39,12 +39,12 @@ export default class Resentence extends PureComponent<Props, State> {
   }
 
   public render(): JSX.Element {
-    const { className, text } = this.props;
+    const { className, children } = this.props;
     const { tokenState, tokenPositions } = this.state;
     return (
       <div className={className} style={PARENT_STYLE}>
         <div ref={this.ghostRef} style={GHOST_STYLE}>
-          {text}
+          {children}
         </div>
         {tokenPositions.length > 0 && (
           <Transition
@@ -60,7 +60,12 @@ export default class Resentence extends PureComponent<Props, State> {
               return (
                 <Spring
                   to={
-                    index != null ? { marginLeft: tokenPositions[index].x } : {}
+                    index != null
+                      ? {
+                          marginLeft: tokenPositions[index].x,
+                          marginTop: tokenPositions[index].y,
+                        }
+                      : {}
                   }
                 >
                   {springProps => (
@@ -84,15 +89,15 @@ export default class Resentence extends PureComponent<Props, State> {
   }
 
   private syncTokens(): void {
-    const { text } = this.props;
+    const { children } = this.props;
     const { tokenState, renderedText } = this.state;
-    if (text !== renderedText) {
+    if (children !== renderedText) {
       const tokenPositions = this.getTokenPositions();
       if (tokenPositions) {
         this.setState({
           tokenPositions,
-          tokenState: transformTo(tokenState, text),
-          renderedText: text,
+          tokenState: transformTo(tokenState, children),
+          renderedText: children,
         });
       }
     }
@@ -109,12 +114,12 @@ export default class Resentence extends PureComponent<Props, State> {
   }
 
   private getTokenPositions(): Position[] | undefined {
-    const { text } = this.props;
+    const { children } = this.props;
     const div = this.ghostRef.current;
     if (!div) {
       return undefined;
     }
-    return text.split("").map((_, i) => this.getTokenPosition(div, i));
+    return children.split("").map((_, i) => this.getTokenPosition(div, i));
   }
 
   private getTokenPosition(div: HTMLDivElement, index: number): Position {
@@ -143,4 +148,5 @@ const CHILD_STYLE: CSSProperties = {
   left: "50%",
   top: 0,
   pointerEvents: "none",
+  userSelect: "none",
 };

@@ -1,6 +1,10 @@
 import React from "react";
 import RotatingDemo from "./RotatingDemo";
 
+interface Props {
+  className?: string;
+}
+
 const LINES = [
   "One fish",
   "Two fish",
@@ -21,10 +25,14 @@ const LINES = [
   "Some are sad.",
   "And some are glad.",
   "And some are very, very bad.",
+  // Repeat last line so it displays twice as long.
+  "And some are very, very bad.",
 ];
 
-const INTERVAL = 2000;
+const INTERVAL = 1250;
 
-export default function SeussDemo(): JSX.Element {
-  return <RotatingDemo entries={LINES} interval={INTERVAL} />;
+export default function SeussDemo({ className }: Props): JSX.Element {
+  return (
+    <RotatingDemo className={className} entries={LINES} interval={INTERVAL} />
+  );
 }
