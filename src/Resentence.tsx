@@ -1,5 +1,5 @@
 import React, { createRef, CSSProperties, PureComponent } from "react";
-import { Spring, Transition } from "react-spring";
+import { animated, Spring, Transition } from "react-spring";
 import { KeyedToken, makeTokenState, TokenState, transformTo } from "./state";
 
 interface Props {
@@ -48,6 +48,7 @@ export default class Resentence extends PureComponent<Props, State> {
         </div>
         {tokenPositions.length > 0 && (
           <Transition
+            native={true}
             items={tokenState.tokens}
             keys={getKey}
             initial={null}
@@ -59,6 +60,7 @@ export default class Resentence extends PureComponent<Props, State> {
               const index = this.indexOfKey(key);
               return (
                 <Spring
+                  native={true}
                   to={
                     index != null
                       ? {
@@ -69,7 +71,7 @@ export default class Resentence extends PureComponent<Props, State> {
                   }
                 >
                   {springProps => (
-                    <div
+                    <animated.div
                       style={{
                         ...CHILD_STYLE,
                         ...transitionProps,
@@ -77,7 +79,7 @@ export default class Resentence extends PureComponent<Props, State> {
                       }}
                     >
                       {token}
-                    </div>
+                    </animated.div>
                   )}
                 </Spring>
               );
