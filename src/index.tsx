@@ -4,7 +4,7 @@ import { KeyedToken, makeTokenState, TokenState, transformTo } from "./state";
 
 export interface Props {
   className?: string;
-  children: string;
+  children: string | number;
 }
 
 interface State {
@@ -24,7 +24,7 @@ export default class Resentence extends PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      tokenState: makeTokenState(props.children),
+      tokenState: makeTokenState(props.children + ""),
       renderedText: undefined,
       tokenPositions: [],
     };
@@ -106,8 +106,8 @@ export default class Resentence extends PureComponent<Props, State> {
       if (tokenPositions) {
         this.setState({
           tokenPositions,
-          tokenState: transformTo(tokenState, children),
-          renderedText: children,
+          tokenState: transformTo(tokenState, children + ""),
+          renderedText: children + "",
         });
       }
     }
@@ -129,7 +129,9 @@ export default class Resentence extends PureComponent<Props, State> {
     if (!div) {
       return undefined;
     }
-    return children.split("").map((_, i) => this.getTokenPosition(div, i));
+    return (children + "")
+      .split("")
+      .map((_, i) => this.getTokenPosition(div, i));
   }
 
   private getTokenPosition(div: HTMLDivElement, index: number): Position {
