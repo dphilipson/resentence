@@ -20,7 +20,8 @@ npm install resentence
 
 ## Usage
 
-Wrap text you want to animate in a `<Resentence>` component:
+Wrap text you want to animate in a `<Resentence>` component, optionally passing
+a `className` prop:
 
 ```tsx
 import Resentence from "resentence";
@@ -28,7 +29,7 @@ import Resentence from "resentence";
 // ...
 
 render() {
-    return <Resentence className="my-text">{this.props.text}</Resentence>;
+    return <Resentence className="my-component">{this.props.text}</Resentence>;
 }
 ```
 
