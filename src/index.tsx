@@ -2,7 +2,7 @@ import React, { createRef, CSSProperties, PureComponent } from "react";
 import { animated, Spring, Transition } from "react-spring";
 import { KeyedToken, makeTokenState, TokenState, transformTo } from "./state";
 
-export interface Props {
+export interface ResentenceProps {
   className?: string;
   children: string | number;
 }
@@ -18,10 +18,10 @@ interface Position {
   y: number;
 }
 
-export default class Resentence extends PureComponent<Props, State> {
+export default class Resentence extends PureComponent<ResentenceProps, State> {
   private ghostRef = createRef<HTMLDivElement>();
 
-  constructor(props: Props) {
+  constructor(props: ResentenceProps) {
     super(props);
     this.state = {
       tokenState: makeTokenState(props.children + ""),
