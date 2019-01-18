@@ -101,13 +101,14 @@ export default class Resentence extends PureComponent<ResentenceProps, State> {
   private syncTokens(): void {
     const { children } = this.props;
     const { tokenState, renderedText } = this.state;
-    if (!document.hidden && children !== renderedText) {
+    const text = children + "";
+    if (!document.hidden && text !== renderedText) {
       const tokenPositions = this.getTokenPositions();
       if (tokenPositions) {
         this.setState({
           tokenPositions,
-          tokenState: transformTo(tokenState, children + ""),
-          renderedText: children + "",
+          tokenState: transformTo(tokenState, text),
+          renderedText: text,
         });
       }
     }
