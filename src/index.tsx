@@ -1,10 +1,11 @@
 import React, { createRef, CSSProperties, PureComponent } from "react";
-import { animated, Spring, Transition } from "react-spring";
+import { animated, Spring, SpringConfig, Transition } from "react-spring";
 import { KeyedToken, makeTokenState, TokenState, transformTo } from "./state";
 
 export interface ResentenceProps {
   className?: string;
   children: string | number;
+  speed?: number;
 }
 
 interface State {
@@ -47,8 +48,12 @@ export default class Resentence extends PureComponent<ResentenceProps, State> {
   }
 
   public render(): JSX.Element {
-    const { className, children } = this.props;
+    const { className, children, speed = 1 } = this.props;
     const { tokenState, tokenPositions } = this.state;
+    const config: SpringConfig = {
+      tension: speed * speed * 170,
+      friction: speed * 26,
+    };
     return (
       <div className={className} style={PARENT_STYLE}>
         <div ref={this.ghostRef} style={GHOST_STYLE}>
@@ -60,6 +65,7 @@ export default class Resentence extends PureComponent<ResentenceProps, State> {
             items={tokenState.tokens}
             keys={getKey}
             initial={null}
+            config={config}
             from={{ opacity: 0, transform: "scale(0)" }}
             enter={{ opacity: 1, transform: "scale(1)" }}
             leave={{ opacity: 0, transform: "scale(0)" }}
@@ -69,6 +75,7 @@ export default class Resentence extends PureComponent<ResentenceProps, State> {
               return (
                 <Spring
                   native={true}
+                  config={config}
                   to={
                     index != null
                       ? {
