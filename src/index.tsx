@@ -137,9 +137,20 @@ export default class Resentence extends PureComponent<ResentenceProps, State> {
     if (!div) {
       return undefined;
     }
-    return (children + "")
-      .split("")
-      .map((_, i) => this.getTokenPosition(div, i));
+    // The y-position of tokens, as measured below, is slightly off from the
+    // container for reasons unknown. Calibrate by treating the y-position of
+    // the first character as 0.
+    const tokenCount = (children + "").length;
+    if (tokenCount === 0) {
+      return [];
+    }
+    const firstPosition = this.getTokenPosition(div, 0);
+    const result: Position[] = [{ ...firstPosition, y: 0 }];
+    for (let i = 1; i < tokenCount; i++) {
+      const { x, y } = this.getTokenPosition(div, i);
+      result.push({ x, y: y - firstPosition.y });
+    }
+    return result;
   }
 
   private getTokenPosition(div: HTMLDivElement, index: number): Position {
