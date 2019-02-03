@@ -46,8 +46,9 @@ class App extends Component {
         <h3 className="app-section-header">Simple to use</h3>
         <p className="app-section-body">
           Using Resentence is as easy as wrapping your text in a{" "}
-          <code>&lt;Resentence&gt;</code> component, with no additional
-          integration required.{" "}
+          <code>&lt;Resentence&gt;</code> component and specifying an alignment
+          ("left", "center", or "right"), with no additional integration
+          required.{" "}
           <a href="https://github.com/dphilipson/resentence">
             See the GitHub repo
           </a>{" "}
