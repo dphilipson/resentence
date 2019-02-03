@@ -1,6 +1,6 @@
 {
   "name": "resentence",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Easy-to-use React component for morphing one string into another.",
   "main": "dist/index.js",
   "types": "dist/index",
