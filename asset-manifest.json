@@ -1,16 +1,16 @@
 {
   "main.css": "/resentence/static/css/main.ac4db150.chunk.css",
-  "main.js": "/resentence/static/js/main.aaf4b89d.chunk.js",
-  "main.js.map": "/resentence/static/js/main.aaf4b89d.chunk.js.map",
+  "main.js": "/resentence/static/js/main.a37bb7a0.chunk.js",
+  "main.js.map": "/resentence/static/js/main.a37bb7a0.chunk.js.map",
   "static/css/1.c8421da6.chunk.css": "/resentence/static/css/1.c8421da6.chunk.css",
-  "static/js/1.71d06a90.chunk.js": "/resentence/static/js/1.71d06a90.chunk.js",
-  "static/js/1.71d06a90.chunk.js.map": "/resentence/static/js/1.71d06a90.chunk.js.map",
+  "static/js/1.c958d64b.chunk.js": "/resentence/static/js/1.c958d64b.chunk.js",
+  "static/js/1.c958d64b.chunk.js.map": "/resentence/static/js/1.c958d64b.chunk.js.map",
   "runtime~main.js": "/resentence/static/js/runtime~main.b7fc1e62.js",
   "runtime~main.js.map": "/resentence/static/js/runtime~main.b7fc1e62.js.map",
-  "static/media/index.scss": "/resentence/static/media/icons-20.f4d910a0.eot",
+  "static/media/index.scss": "/resentence/static/media/icons-16.d0bcd5b9.woff",
   "static/css/main.ac4db150.chunk.css.map": "/resentence/static/css/main.ac4db150.chunk.css.map",
   "static/css/1.c8421da6.chunk.css.map": "/resentence/static/css/1.c8421da6.chunk.css.map",
   "index.html": "/resentence/index.html",
-  "precache-manifest.3cdc0d56b75205d6e2f441bed3652a3f.js": "/resentence/precache-manifest.3cdc0d56b75205d6e2f441bed3652a3f.js",
+  "precache-manifest.f7e41d67984a1a6811d5460b9bb6cfb0.js": "/resentence/precache-manifest.f7e41d67984a1a6811d5460b9bb6cfb0.js",
   "service-worker.js": "/resentence/service-worker.js"
 }
