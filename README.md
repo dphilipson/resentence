@@ -54,7 +54,7 @@ location relative to the container as the container changes size.
 Thus, Resentence requires the consumer to tell it how its text is aligned. This
 is often the same as the container's `text-align` CSS property, and in fact
 setting the `align` prop will add the appropriate `text-align` to the element,
-but there are situations where an elements effective alignment is not the same
+but there are situations where an element's effective alignment is not the same
 as its `text-align`. For example, right-aligned text can be produced by placing
 text at the end of a flexbox row if it is given flex values to take no more
 space than needed, forcing the text to be flush against the right side
