@@ -1,10 +1,11 @@
+import PropTypes from "prop-types";
 import React, { createRef, CSSProperties, PureComponent } from "react";
 import { animated, Spring, SpringConfig, Transition } from "react-spring";
 import { KeyedToken, makeTokenState, TokenState, transformTo } from "./state";
 
 export interface ResentenceProps {
   className?: string;
-  children: string | number;
+  children?: string | number | null;
   align: "left" | "center" | "right";
   speed?: number;
 }
@@ -21,12 +22,19 @@ interface Position {
 }
 
 export default class Resentence extends PureComponent<ResentenceProps, State> {
+  public static propTypes = {
+    className: PropTypes.string,
+    children: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    align: PropTypes.oneOf(["left", "center", "right"]).isRequired,
+    speed: PropTypes.number,
+  };
+
   private ghostRef = createRef<HTMLDivElement>();
 
   constructor(props: ResentenceProps) {
     super(props);
     this.state = {
-      tokenState: makeTokenState(props.children + ""),
+      tokenState: makeTokenState(this.getText()),
       renderedText: undefined,
       tokenPositions: [],
     };
@@ -54,7 +62,7 @@ export default class Resentence extends PureComponent<ResentenceProps, State> {
   }
 
   public render(): JSX.Element {
-    const { className, children, speed = 1 } = this.props;
+    const { className, speed = 1 } = this.props;
     const { tokenState, tokenPositions } = this.state;
     const config: SpringConfig = {
       tension: speed * speed * 170,
@@ -63,7 +71,7 @@ export default class Resentence extends PureComponent<ResentenceProps, State> {
     return (
       <div className={className} style={PARENT_STYLE}>
         <div ref={this.ghostRef} style={GHOST_STYLE}>
-          {children}
+          {this.getText()}
         </div>
         {tokenPositions.length > 0 && (
           <Transition
@@ -104,6 +112,11 @@ export default class Resentence extends PureComponent<ResentenceProps, State> {
     );
   }
 
+  private getText(): string {
+    const { children } = this.props;
+    return children == null ? "" : children + "";
+  }
+
   private getPositionSpringTarget(key: number): CSSProperties {
     const { align } = this.props;
     const { tokenPositions } = this.state;
@@ -132,9 +145,8 @@ export default class Resentence extends PureComponent<ResentenceProps, State> {
   }
 
   private syncTokens(): void {
-    const { children } = this.props;
     const { tokenState, renderedText } = this.state;
-    const text = children + "";
+    const text = this.getText();
     if (!document.hidden && text !== renderedText) {
       const tokenPositions = this.getTokenPositions();
       if (tokenPositions) {
@@ -158,7 +170,6 @@ export default class Resentence extends PureComponent<ResentenceProps, State> {
   }
 
   private getTokenPositions(): Position[] | undefined {
-    const { children } = this.props;
     const div = this.ghostRef.current;
     if (!div) {
       return undefined;
@@ -166,7 +177,7 @@ export default class Resentence extends PureComponent<ResentenceProps, State> {
     // The y-position of tokens, as measured below, is slightly off from the
     // container for reasons unknown. Calibrate by treating the y-position of
     // the first character as 0.
-    const tokenCount = (children + "").length;
+    const tokenCount = this.getText().length;
     if (tokenCount === 0) {
       return [];
     }
