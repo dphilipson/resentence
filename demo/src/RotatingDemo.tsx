@@ -6,6 +6,7 @@ interface Props {
   className?: string;
   entries: string[];
   interval: number;
+  align: "left" | "center" | "right";
 }
 
 interface State {
@@ -31,7 +32,7 @@ export default class RotatingDemo extends PureComponent<Props, State> {
   }
 
   public render(): JSX.Element | null {
-    const { className, entries } = this.props;
+    const { className, entries, align } = this.props;
     const { index } = this.state;
     if (entries.length === 0) {
       return null;
@@ -39,7 +40,7 @@ export default class RotatingDemo extends PureComponent<Props, State> {
     return (
       <Resentence
         className={classNames("demo-readout", className)}
-        align="left"
+        align={align}
       >
         {entries[index % entries.length]}
       </Resentence>

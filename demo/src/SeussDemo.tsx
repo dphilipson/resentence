@@ -33,6 +33,11 @@ const INTERVAL = 1250;
 
 export default function SeussDemo({ className }: Props): JSX.Element {
   return (
-    <RotatingDemo className={className} entries={LINES} interval={INTERVAL} />
+    <RotatingDemo
+      className={className}
+      entries={LINES}
+      interval={INTERVAL}
+      align="center"
+    />
   );
 }

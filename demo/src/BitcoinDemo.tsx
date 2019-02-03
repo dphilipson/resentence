@@ -28,6 +28,7 @@ export default function BitcoinDemo({ className }: Props): JSX.Element {
         className="bitcoin-demo-readout"
         entries={PRICES}
         interval={INTERVAL}
+        align="right"
       />
     </div>
   );

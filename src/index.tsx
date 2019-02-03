@@ -62,14 +62,14 @@ export default class Resentence extends PureComponent<ResentenceProps, State> {
   }
 
   public render(): JSX.Element {
-    const { className, speed = 1 } = this.props;
+    const { className, align, speed = 1 } = this.props;
     const { tokenState, tokenPositions } = this.state;
     const config: SpringConfig = {
       tension: speed * speed * 170,
       friction: speed * 26,
     };
     return (
-      <div className={className} style={PARENT_STYLE}>
+      <div className={className} style={{ ...PARENT_STYLE, textAlign: align }}>
         <div ref={this.ghostRef} style={GHOST_STYLE}>
           {this.getText()}
         </div>

@@ -37,28 +37,29 @@ render() {
 
 The props are as follows:
 
-| Prop name   | Required? | Type                          | Description                                                             |
-| ----------- | --------- | ----------------------------- | ----------------------------------------------------------------------- |
-| `align`     | Yes       | `"left" | "center" | "right"` | How the text is aligned in the document layout. For details, see below. |
-| `className` | No        | `string`                      | CSS classes that are passed to the Resentence element.                  |
-| `speed`     | No        | `number`                      | Factor by which the animation speed is multiplied (default: 1).         |
+| Prop name   | Required? | Type                            | Description                                                             |
+| ----------- | --------- | ------------------------------- | ----------------------------------------------------------------------- |
+| `align`     | Yes       | `"left" \| "center" \| "right"` | How the text is aligned in the document layout. For details, see below. |
+| `className` | No        | `string`                        | CSS classes that are passed to the Resentence element.                  |
+| `speed`     | No        | `number`                        | Factor by which the animation speed is multiplied (default: 1).         |
 
 ### About the `align` prop
 
 Resentence needs a bit of help to compute character positions if the Resentence
-element changes size as its text changes, which is a pretty common occurrence
-for elements containing text. To correctly animate the transition when the
-container changes size, Resentence needs to know which part of the text is the
-"fixed point" and should remain in the same location relative to the container
-as the container changes size.
+element changes size, which is a pretty common occurrence when the text changes
+or the window resizes. To correctly animate the transition, Resentence needs to
+know which part of the text is the "fixed point" and should remain in the same
+location relative to the container as the container changes size.
 
 Thus, Resentence requires the consumer to tell it how its text is aligned. This
-is often, but not always, the same as the container's computed `text-align` CSS
-property. For example, right-aligned text can be produced by placing text at the
-end of a flexbox row if it is given flex values to take no more space than
-needed, aligning the text to the right side regardless of its `text-align`
-property. Rather than attempt to compute effective alignments for all possible
-layouts, Resentence instead asks the consumer to let it know how it will be used
-in the larger layout of the page.
+is often the same as the container's `text-align` CSS property, and in fact
+setting the `align` prop will add the appropriate `text-align` to the element,
+but there are situations where an elements effective alignment is not the same
+as its `text-align`. For example, right-aligned text can be produced by placing
+text at the end of a flexbox row if it is given flex values to take no more
+space than needed, forcing the text to be flush against the right side
+regardless of its `text-align` property. Rather than attempt to compute
+effective alignments for all possible layouts, Resentence instead asks the
+consumer to let it know how it will be used in the larger layout of the page.
 
 Copyright © 2019 David Philipson
