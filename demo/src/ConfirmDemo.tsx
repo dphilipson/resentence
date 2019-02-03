@@ -27,7 +27,9 @@ export default class ConfirmDemo extends PureComponent<Props, State> {
     const { text, inputText } = this.state;
     return (
       <div className={classNames("confirm-demo", className)}>
-        <Resentence className="demo-readout">{text}</Resentence>
+        <Resentence className="demo-readout" align="center">
+          {text}
+        </Resentence>
         <ControlGroup className="controls" fill={true}>
           <TextInput
             className="input"

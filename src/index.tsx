@@ -5,6 +5,7 @@ import { KeyedToken, makeTokenState, TokenState, transformTo } from "./state";
 export interface ResentenceProps {
   className?: string;
   children: string | number;
+  align: "left" | "center" | "right";
   speed?: number;
 }
 
@@ -36,8 +37,13 @@ export default class Resentence extends PureComponent<ResentenceProps, State> {
     document.addEventListener("visibilitychange", this.handleVisibilityChange);
   }
 
-  public componentDidUpdate(): void {
-    this.syncTokens();
+  public componentDidUpdate(oldProps: ResentenceProps): void {
+    if (
+      oldProps.children !== this.props.children ||
+      oldProps.align !== this.props.align
+    ) {
+      this.syncTokens();
+    }
   }
 
   public componentWillUnmount(): void {
@@ -71,24 +77,17 @@ export default class Resentence extends PureComponent<ResentenceProps, State> {
             leave={{ opacity: 0, transform: "scale(0)" }}
           >
             {({ key, token }) => transitionProps => {
-              const index = this.indexOfKey(key);
               return (
                 <Spring
                   native={true}
                   config={config}
-                  to={
-                    index != null
-                      ? {
-                          marginLeft: tokenPositions[index].x,
-                          marginTop: tokenPositions[index].y,
-                        }
-                      : {}
-                  }
+                  to={this.getPositionSpringTarget(key)}
                 >
                   {springProps => (
                     <animated.div
                       style={{
                         ...CHILD_STYLE,
+                        ...this.getAlignmentStyle(),
                         ...transitionProps,
                         ...springProps,
                       }}
@@ -103,6 +102,33 @@ export default class Resentence extends PureComponent<ResentenceProps, State> {
         )}
       </div>
     );
+  }
+
+  private getPositionSpringTarget(key: number): CSSProperties {
+    const { align } = this.props;
+    const { tokenPositions } = this.state;
+    const index = this.indexOfKey(key);
+    if (index == null) {
+      return {};
+    } else {
+      const { x, y } = tokenPositions[index];
+      return {
+        marginTop: y,
+        ...(align === "right" ? { marginRight: -x } : { marginLeft: x }),
+      };
+    }
+  }
+
+  private getAlignmentStyle(): CSSProperties {
+    const { align } = this.props;
+    switch (align) {
+      case "left":
+        return { left: 0 };
+      case "center":
+        return { left: "50%" };
+      case "right":
+        return { right: 0 };
+    }
   }
 
   private syncTokens(): void {
@@ -160,11 +186,25 @@ export default class Resentence extends PureComponent<ResentenceProps, State> {
     range.setEnd(textNode, index + 1);
     const tokenRect = range.getBoundingClientRect();
     const parentRect = div.getBoundingClientRect();
-    const parentCenterX = parentRect.left + parentRect.width / 2;
     return {
-      x: tokenRect.left - parentCenterX,
+      x: this.getTokenX(tokenRect, parentRect),
       y: tokenRect.top - parentRect.top,
     };
+  }
+
+  private getTokenX(
+    token: ClientRect | DOMRect,
+    parent: ClientRect | DOMRect,
+  ): number {
+    const { align } = this.props;
+    switch (align) {
+      case "left":
+        return token.left - parent.left;
+      case "center":
+        return token.left - (parent.left + parent.width / 2);
+      case "right":
+        return token.right - parent.right;
+    }
   }
 
   private handleVisibilityChange = (): void => {
@@ -180,7 +220,6 @@ const PARENT_STYLE: CSSProperties = { position: "relative" };
 const GHOST_STYLE: CSSProperties = { color: "transparent" };
 const CHILD_STYLE: CSSProperties = {
   position: "absolute",
-  left: "50%",
   top: 0,
   pointerEvents: "none",
   userSelect: "none",
