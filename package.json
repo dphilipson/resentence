@@ -1,73 +1,35 @@
 {
   "name": "resentence",
-  "version": "0.3.1",
-  "description": "Easy-to-use React component for morphing one string into another.",
-  "main": "dist/index.js",
-  "types": "dist/index",
-  "files": [
-    "dist/"
+  "private": true,
+  "workspaces": [
+    "packages/*"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/dphilipson/resentence.git"
-  },
-  "keywords": [
-    "react",
-    "Levenshtein",
-    "text",
-    "animation"
-  ],
-  "homepage": "https://github.com/dphilipson/resentence",
-  "bugs": {
-    "url": "https://github.com/dphilipson/resentence/issues",
-    "email": "david.philipson@gmail.com"
-  },
-  "author": "David Philipson <david.philipson@gmail.com> (http://dphil.me)",
-  "license": "MIT",
   "scripts": {
-    "build": "yarn run clean && tsc",
-    "clean": "rm -rf dist/*",
-    "format-file": "prettier --write",
+    "format-file": "prettier --write --config config/.prettierrc.json",
     "format": "git ls-files | egrep '\\.(js(on)?|scss|tsx?)?$' | xargs yarn run format-file",
-    "lint-file": "tslint",
-    "lint": "tslint --project .",
-    "prepublishOnly": "yarn run test && yarn run build",
-    "test": "yarn run lint && tsc --noEmit"
+    "lint": "lerna run lint",
+    "publish-demo": "lerna run --scope resentence-demo deploy",
+    "publish-lib": "lerna exec --scope resentence yarn publish",
+    "start": "lerna run start --parallel",
+    "test": "lerna run test"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged && lerna run pre-commit"
     }
   },
   "lint-staged": {
-    "**/*.{js,json,scss,md}": [
+    "**/*.{ts,tsx,js,json,scss,md}": [
       "yarn run format-file",
-      "git add"
-    ],
-    "**/*.ts": [
-      "yarn run format-file",
-      "yarn run lint-file --fix",
       "git add"
     ]
   },
   "devDependencies": {
-    "@types/prop-types": "^15.5.8",
-    "@types/react": "^16.7.18",
-    "@types/react-dom": "^16.0.11",
     "husky": "^1.3.1",
-    "lint-staged": "^8.1.0",
-    "prettier": "^1.15.3",
-    "tslint": "^5.12.0",
-    "tslint-config-prettier": "^1.17.0",
-    "tslint-react": "^3.6.0",
-    "typescript": "^3.2.2"
-  },
-  "dependencies": {
-    "prop-types": "^15.6.2",
-    "react-spring": "^7.2.7"
-  },
-  "peerDependencies": {
-    "react": ">= 16.4.0",
-    "react-dom": ">= 16.4.0"
+    "lerna": "^3.13.0",
+    "lint-staged": "^8.1.4",
+    "prettier": "^1.16.4",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^3.6.0"
   }
 }

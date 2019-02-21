@@ -1,8 +1,8 @@
 import { Button, Classes, ControlGroup, Intent } from "@blueprintjs/core";
 import classNames from "classnames";
 import React, { PureComponent } from "react";
+import Resentence from "resentence";
 import "./ConfirmDemo.scss";
-import Resentence from "./lib/index";
 import TextInput from "./TextInput";
 
 interface Props {

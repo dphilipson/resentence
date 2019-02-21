@@ -1,0 +1,60 @@
+{
+  "name": "resentence",
+  "version": "0.3.1",
+  "description": "Easy-to-use React component for morphing one string into another.",
+  "main": "dist/index.js",
+  "types": "dist/index",
+  "files": [
+    "dist/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dphilipson/resentence.git"
+  },
+  "keywords": [
+    "react",
+    "Levenshtein",
+    "text",
+    "animation"
+  ],
+  "homepage": "https://github.com/dphilipson/resentence",
+  "bugs": {
+    "url": "https://github.com/dphilipson/resentence/issues",
+    "email": "david.philipson@gmail.com"
+  },
+  "author": "David Philipson <david.philipson@gmail.com> (http://dphil.me)",
+  "license": "MIT",
+  "scripts": {
+    "build": "yarn run clean && tsc",
+    "clean": "rm -rf dist/*",
+    "lint-file": "tslint",
+    "lint": "tslint --project .",
+    "pre-commit": "lint-staged",
+    "prepublishOnly": "yarn run test && yarn run build",
+    "start": "yarn run clean && tsc --watch",
+    "test": "yarn run lint && yarn run typecheck",
+    "typecheck": "tsc --noEmit"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": [
+      "yarn run lint-file --fix",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "@types/prop-types": "^15.5.8",
+    "@types/react": "^16.7.18",
+    "@types/react-dom": "^16.0.11",
+    "lint-staged": "^8.1.4",
+    "tslint": "^5.12.1",
+    "typescript": "^3.2.2"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.2",
+    "react-spring": "^7.2.7"
+  },
+  "peerDependencies": {
+    "react": ">= 16.4.0",
+    "react-dom": ">= 16.4.0"
+  }
+}
