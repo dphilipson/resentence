@@ -5,6 +5,7 @@
   "homepage": "https://dphilipson.github.io/resentence",
   "dependencies": {
     "@blueprintjs/core": "^3.10.0",
+    "bootstrap": "^4.3.1",
     "classnames": "^2.2.6",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",

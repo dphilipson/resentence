@@ -9,7 +9,7 @@ import SeussDemo from "./SeussDemo";
 class App extends Component {
   public render() {
     return (
-      <div className={classNames(Classes.DARK, "app")}>
+      <div className={classNames(Classes.DARK, "container", "app")}>
         <h1 className="app-title">Resentence</h1>
         <p className="app-explanation">
           Easy-to-use React component for morphing one string into another.{" "}
