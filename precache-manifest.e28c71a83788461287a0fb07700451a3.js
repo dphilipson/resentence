@@ -1,26 +1,26 @@
 self.__precacheManifest = [
   {
-    "revision": "f3d5becc4667a7919dc6",
+    "revision": "2061a2c12f62b58a3479",
     "url": "/resentence/static/css/main.6a369ec8.chunk.css"
   },
   {
-    "revision": "f3d5becc4667a7919dc6",
-    "url": "/resentence/static/js/main.466219f2.chunk.js"
+    "revision": "2061a2c12f62b58a3479",
+    "url": "/resentence/static/js/main.e7131ec8.chunk.js"
   },
   {
     "revision": "1f5e097aa27a36e8e1ab",
     "url": "/resentence/static/js/runtime~main.8928d1e5.js"
   },
   {
-    "revision": "490d9d4ecc1afd4e6bcb",
+    "revision": "319ca761211045e356d0",
     "url": "/resentence/static/css/2.d502b5c4.chunk.css"
   },
   {
-    "revision": "490d9d4ecc1afd4e6bcb",
-    "url": "/resentence/static/js/2.965f9c8d.chunk.js"
+    "revision": "319ca761211045e356d0",
+    "url": "/resentence/static/js/2.0bdff782.chunk.js"
   },
   {
-    "revision": "2647c4c77f82256d0aea6124bd7e41c1",
+    "revision": "87811085708fb54bf4316f8b915e29fd",
     "url": "/resentence/index.html"
   }
 ];
