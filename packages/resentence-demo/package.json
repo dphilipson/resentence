@@ -4,12 +4,12 @@
   "private": true,
   "homepage": "https://dphilipson.github.io/resentence",
   "dependencies": {
-    "@blueprintjs/core": "^3.10.0",
+    "@blueprintjs/core": "^3.14.1",
     "bootstrap": "^4.3.1",
     "classnames": "^2.2.6",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-scripts": "2.1.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "2.1.8",
     "resentence": "*",
     "webfontloader": "^1.6.28"
   },
@@ -41,15 +41,15 @@
   ],
   "devDependencies": {
     "@types/classnames": "^2.2.6",
-    "@types/jest": "^23.3.10",
-    "@types/node": "^10.12.18",
-    "@types/react": "^16.7.18",
-    "@types/react-dom": "^16.0.11",
+    "@types/jest": "^24.0.11",
+    "@types/node": "^11.12.2",
+    "@types/react": "^16.8.10",
+    "@types/react-dom": "^16.8.3",
     "@types/webfontloader": "^1.6.29",
     "gh-pages": "^2.0.1",
-    "lint-staged": "^8.1.4",
+    "lint-staged": "^8.1.5",
     "node-sass": "^4.11.0",
-    "tslint": "^5.12.1",
-    "typescript": "^3.2.2"
+    "tslint": "^5.14.0",
+    "typescript": "^3.4.1"
   }
 }

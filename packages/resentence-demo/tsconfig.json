@@ -14,7 +14,8 @@
     "strict": true,
     "target": "es6",
     "allowJs": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "lib": ["dom", "dom.iterable", "esnext"]
   },
   "include": ["src"]
 }
