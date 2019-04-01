@@ -247,6 +247,7 @@ function Token({
         ...transitionProps,
         ...springProps,
       }}
+      aria-hidden={true}
     >
       {token}
     </animated.div>
