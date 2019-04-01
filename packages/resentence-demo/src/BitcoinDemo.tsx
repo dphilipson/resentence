@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React from "react";
+import React, { memo } from "react";
 import "./BitcoinDemo.scss";
 import RotatingDemo from "./RotatingDemo";
 
@@ -21,7 +21,9 @@ const PRICES = [
 
 const INTERVAL = 1250;
 
-export default function BitcoinDemo({ className }: Props): JSX.Element {
+const BitcoinDemo = memo(function BitcoinDemo({
+  className,
+}: Props): JSX.Element {
   return (
     <div className={classNames("bitcoin-demo-container", className)}>
       <RotatingDemo
@@ -32,4 +34,5 @@ export default function BitcoinDemo({ className }: Props): JSX.Element {
       />
     </div>
   );
-}
+});
+export default BitcoinDemo;

@@ -1,5 +1,11 @@
 import { InputGroup } from "@blueprintjs/core";
-import React, { ChangeEvent, KeyboardEvent, PureComponent } from "react";
+import React, {
+  ChangeEvent,
+  KeyboardEvent,
+  memo,
+  ReactElement,
+  useCallback,
+} from "react";
 
 interface Props {
   className?: string;
@@ -9,26 +15,36 @@ interface Props {
   onSubmit?(): void;
 }
 
-export default class TextInput extends PureComponent<Props> {
-  public render(): JSX.Element {
-    const { className, value, placeholder } = this.props;
-    return (
-      <InputGroup
-        className={className}
-        value={value}
-        placeholder={placeholder}
-        onChange={this.handleChange}
-        onKeyPress={this.handleKeyPress}
-      />
-    );
-  }
+const TextInput = memo(function TextInput({
+  className,
+  value,
+  placeholder,
+  onChange,
+  onSubmit,
+}: Props): ReactElement {
+  const handleChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>): void =>
+      onChange(event.currentTarget.value),
+    [onChange],
+  );
 
-  private handleChange = (event: ChangeEvent<HTMLInputElement>): void =>
-    this.props.onChange(event.currentTarget.value);
+  const handleKeyPress = useCallback(
+    (event: KeyboardEvent<HTMLInputElement>): void => {
+      if (event.charCode === 13 && onSubmit) {
+        onSubmit();
+      }
+    },
+    [onSubmit],
+  );
 
-  private handleKeyPress = (event: KeyboardEvent<HTMLInputElement>): void => {
-    if (event.charCode === 13 && this.props.onSubmit) {
-      this.props.onSubmit();
-    }
-  };
-}
+  return (
+    <InputGroup
+      className={className}
+      value={value}
+      placeholder={placeholder}
+      onChange={handleChange}
+      onKeyPress={handleKeyPress}
+    />
+  );
+});
+export default TextInput;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import RotatingDemo from "./RotatingDemo";
 
 interface Props {
@@ -31,7 +31,7 @@ const LINES = [
 
 const INTERVAL = 1250;
 
-export default function SeussDemo({ className }: Props): JSX.Element {
+const SeussDemo = memo(function SeussDemo({ className }: Props): JSX.Element {
   return (
     <RotatingDemo
       className={className}
@@ -40,4 +40,5 @@ export default function SeussDemo({ className }: Props): JSX.Element {
       align="center"
     />
   );
-}
+});
+export default SeussDemo;

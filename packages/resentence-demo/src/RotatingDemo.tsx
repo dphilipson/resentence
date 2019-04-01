@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { PureComponent } from "react";
+import React, { memo, ReactElement, useEffect, useRef, useState } from "react";
 import Resentence from "resentence";
 
 interface Props {
@@ -9,51 +9,39 @@ interface Props {
   align: "left" | "center" | "right";
 }
 
-interface State {
-  index: number;
-}
+const RotatingDemo = memo(function RotatingDemo({
+  className,
+  entries,
+  interval,
+  align,
+}: Props): ReactElement | null {
+  const [index, setIndex] = useState(0);
+  useInterval(showNextEntry, interval);
 
-export default class RotatingDemo extends PureComponent<Props, State> {
-  public readonly state: State = { index: 0 };
-  private intervalId: number | undefined;
-
-  public componentDidMount(): void {
-    this.restartInterval();
+  if (entries.length === 0) {
+    return null;
   }
+  return (
+    <Resentence className={classNames("demo-readout", className)} align={align}>
+      {entries[index % entries.length]}
+    </Resentence>
+  );
 
-  public componentDidUpdate(oldProps: Props): void {
-    if (oldProps.interval !== this.props.interval) {
-      this.restartInterval();
-    }
+  function showNextEntry(): void {
+    setIndex(i => (i + 1) % entries.length);
   }
+});
+export default RotatingDemo;
 
-  public componentWillUnmount(): void {
-    window.clearInterval(this.intervalId);
-  }
+function useInterval(callback: () => void, delay: number): void {
+  const callbackRef = useRef(callback);
+  useEffect(() => {
+    callbackRef.current = callback;
+  }, [callback]);
 
-  public render(): JSX.Element | null {
-    const { className, entries, align } = this.props;
-    const { index } = this.state;
-    if (entries.length === 0) {
-      return null;
-    }
-    return (
-      <Resentence
-        className={classNames("demo-readout", className)}
-        align={align}
-      >
-        {entries[index % entries.length]}
-      </Resentence>
-    );
-  }
-
-  private restartInterval(): void {
-    const { entries, interval } = this.props;
-    window.clearInterval(this.intervalId);
-    this.intervalId = window.setInterval(
-      () =>
-        this.setState(({ index }) => ({ index: (index + 1) % entries.length })),
-      interval,
-    );
-  }
+  // Set up the interval.
+  useEffect(() => {
+    const id = setInterval(callbackRef.current, delay);
+    return () => clearInterval(id);
+  }, [delay]);
 }
