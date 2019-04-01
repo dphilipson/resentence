@@ -5,7 +5,7 @@
     "packages/*"
   ],
   "scripts": {
-    "format-file": "prettier --write --config config/.prettierrc.json",
+    "format-file": "prettier --write",
     "format": "git ls-files | egrep '\\.(js(on)?|scss|tsx?)?$' | xargs yarn run format-file",
     "lint": "lerna run lint",
     "publish-demo": "lerna run --scope resentence-demo deploy",

@@ -14,15 +14,15 @@
     "webfontloader": "^1.6.28"
   },
   "scripts": {
-    "build": "react-scripts build",
+    "build": "craco build --workspace",
     "deploy": "gh-pages -d build",
     "eject": "react-scripts eject",
     "lint-file": "tslint",
     "lint": "tslint --project .",
     "pre-commit": "lint-staged",
     "predeploy": "yarn build",
-    "start": "react-scripts start",
-    "test": "react-scripts test"
+    "start": "craco start --workspace",
+    "test": "craco test --workspace"
   },
   "lint-staged": {
     "**/*.{ts,tsx}": [
@@ -40,6 +40,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@craco/craco": "^3.6.0",
     "@types/classnames": "^2.2.6",
     "@types/jest": "^24.0.11",
     "@types/node": "^11.12.2",

@@ -63,7 +63,6 @@ const Resentence = memo(function Resentence({
    * These are represented in the code below as targetText,
    * ghostRef.current.innerText, and displayState respectively.
    */
-
   const targetText = children == null ? "" : children + "";
   const [
     { visibleText, tokenPositions, tokenState },
