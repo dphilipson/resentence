@@ -5,6 +5,10 @@
   flex-direction: column;
   align-items: center;
 
+  .demo-readout {
+    min-height: 100px;
+  }
+
   .controls {
     margin-top: 4 * $pt-grid-size;
     width: 100%;

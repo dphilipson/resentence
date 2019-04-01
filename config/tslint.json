@@ -4,6 +4,10 @@
     "interface-name": [true, "never-prefix"],
     "no-bitwise": false,
     "no-console": [true, "log"],
+    "no-shadowed-variable": [
+      true,
+      { "function": false, "temporalDeadZone": false }
+    ],
     "no-this-assignment": [true, { "allow-destructuring": true }],
     "object-literal-sort-keys": false
   }

@@ -11,7 +11,7 @@ interface Props {
 
 export default class TextInput extends PureComponent<Props> {
   public render(): JSX.Element {
-    const { className, value, placeholder, onSubmit } = this.props;
+    const { className, value, placeholder } = this.props;
     return (
       <InputGroup
         className={className}

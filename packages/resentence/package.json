@@ -31,7 +31,7 @@
     "lint": "tslint --project .",
     "pre-commit": "lint-staged",
     "prepublishOnly": "yarn run test && yarn run build",
-    "start": "yarn run clean && tsc --watch",
+    "start": "tsc --watch",
     "test": "yarn run lint && yarn run typecheck",
     "typecheck": "tsc --noEmit"
   },
@@ -42,19 +42,19 @@
     ]
   },
   "devDependencies": {
-    "@types/prop-types": "^15.5.8",
-    "@types/react": "^16.7.18",
-    "@types/react-dom": "^16.0.11",
-    "lint-staged": "^8.1.4",
-    "tslint": "^5.12.1",
-    "typescript": "^3.2.2"
+    "@types/prop-types": "^15.7.0",
+    "@types/react": "^16.8.10",
+    "@types/react-dom": "^16.8.3",
+    "lint-staged": "^8.1.5",
+    "tslint": "^5.14.0",
+    "typescript": "^3.4.1"
   },
   "dependencies": {
     "prop-types": "^15.6.2",
-    "react-spring": "^7.2.7"
+    "react-spring": "^8.0.18"
   },
   "peerDependencies": {
-    "react": ">= 16.4.0",
-    "react-dom": ">= 16.4.0"
+    "react": ">= 16.8.0",
+    "react-dom": ">= 16.8.0"
   }
 }
