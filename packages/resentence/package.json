@@ -31,7 +31,7 @@
     "lint": "tslint --project .",
     "pre-commit": "lint-staged",
     "prepublishOnly": "yarn run test && yarn run build",
-    "start": "yarn run clean && tsc --watch",
+    "start": "tsc --watch",
     "test": "yarn run lint && yarn run typecheck",
     "typecheck": "tsc --noEmit"
   },

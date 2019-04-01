@@ -26,12 +26,12 @@ Wrap text you want to animate in a `<Resentence>` component and specify an
 ```tsx
 import Resentence from "resentence";
 
-// ...
-
-render() {
-    return <Resentence className="my-component" align="left" speed={1.5}>
-        {this.props.text}
-    </Resentence>;
+function MyComponent({ text }) {
+  return (
+    <Resentence className="my-component" align="left" speed={1.5}>
+      {text}
+    </Resentence>
+  );
 }
 ```
 

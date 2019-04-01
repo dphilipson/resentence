@@ -10,7 +10,7 @@
     "lint": "lerna run lint",
     "publish-demo": "lerna run --scope resentence-demo deploy",
     "publish-lib": "lerna exec --scope resentence yarn publish",
-    "start": "lerna run start --parallel",
+    "start": "lerna run --scope resentence build && lerna run start --parallel",
     "test": "lerna run test"
   },
   "husky": {

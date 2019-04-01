@@ -16,7 +16,7 @@ import {
   useSpring,
   useTransition,
 } from "react-spring";
-import { KeyedToken, makeTokenState, transformTo } from "./state";
+import { KeyedToken, makeTokenState, TokenState, transformTo } from "./state";
 
 export interface ResentenceProps {
   className?: string;
@@ -30,18 +30,49 @@ interface Position {
   y: number;
 }
 
+interface DisplayState {
+  visibleText: string | undefined;
+  tokenPositions: Position[] | undefined;
+  tokenState: TokenState;
+}
+
 const Resentence = memo(function Resentence({
   className,
   children,
   align,
   speed = 1,
 }: ResentenceProps): ReactElement {
-  const text = children == null ? "" : children + "";
-  const [tokenState, setTokenState] = useState(makeTokenState(text));
-  const [renderedText, setRenderedText] = useState<string | undefined>(
-    undefined,
-  );
-  const [tokenPositions, setTokenPositions] = useState<Position[]>();
+  /*
+   * We achieve the desired behavior by rendering each visible character in a
+   * separate div, and these divs are animated to the proper positions when text
+   * changes. To compute the desired coordinates for each character, we first
+   * render the text to an invisible "ghost" div with the same styling, then use
+   * that div to take measurements for each individual character.
+   *
+   * With this in mind, note that there are three values that represent the
+   * text, and at a given time any of these values may disagree:
+   *
+   * 1. The target value of the text, passed in from the parent, which should
+   *    eventually be displayed on screen.
+   *
+   * 2. The value of the text which is currently contained in the invisible div.
+   *
+   * 3. The state of the text displayed by the visible characters, or that which
+   *    they are actively animating towards.
+   *
+   * These are represented in the code below as targetText,
+   * ghostRef.current.innerText, and displayState respectively.
+   */
+
+  const targetText = children == null ? "" : children + "";
+  const [
+    { visibleText, tokenPositions, tokenState },
+    setDisplayState,
+  ] = useState<DisplayState>({
+    visibleText: undefined,
+    tokenPositions: undefined,
+    tokenState: makeTokenState(targetText),
+  });
   const ghostRef = useRef<HTMLDivElement | null>(null);
 
   const getTokenX = useCallback(
@@ -82,7 +113,7 @@ const Resentence = memo(function Resentence({
     // The y-position of tokens, as measured below, is slightly off from the
     // container for reasons unknown. Calibrate by treating the y-position of
     // the first character as 0.
-    const tokenCount = text.length;
+    const tokenCount = div.innerText.length;
     if (tokenCount === 0) {
       return [];
     }
@@ -93,21 +124,32 @@ const Resentence = memo(function Resentence({
       result.push({ x, y: y - firstPosition.y });
     }
     return result;
-  }, [text, getTokenPosition]);
+  }, [getTokenPosition]);
 
   const syncTokens = useCallback((): void => {
-    if (!document.hidden && text !== renderedText) {
-      const newTokenPositions = getTokenPositions();
-      if (newTokenPositions) {
-        setTokenPositions(newTokenPositions);
-        setTokenState(ts => transformTo(ts, text));
-        setRenderedText(text);
-      }
+    if (document.hidden) {
+      return;
     }
-  }, [text, renderedText, getTokenPositions]);
+    const ghostText = ghostRef.current && ghostRef.current.innerText;
+    if (ghostText == null || ghostText === visibleText) {
+      return;
+    }
+    const newTokenPositions = getTokenPositions();
+    if (!newTokenPositions) {
+      return;
+    }
+    setDisplayState(oldState => ({
+      visibleText: ghostText,
+      tokenPositions: newTokenPositions,
+      tokenState: transformTo(oldState.tokenState, ghostText),
+    }));
+  }, [visibleText, getTokenPositions]);
 
   useEffect(() => {
     syncTokens();
+  });
+
+  useEffect(() => {
     document.addEventListener("visibilitychange", syncTokens);
     return () => document.removeEventListener("visibilitychange", syncTokens);
   }, [syncTokens]);
@@ -131,7 +173,7 @@ const Resentence = memo(function Resentence({
   return (
     <div className={className} style={{ ...PARENT_STYLE, textAlign: align }}>
       <div ref={ghostRef} style={GHOST_STYLE}>
-        {text}
+        {targetText}
       </div>
       {tokenPositions &&
         transitions.map(({ item, props }) => (
